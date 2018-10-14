@@ -1,3 +1,8 @@
+/**
+ *  @author Joshua Chen
+ *  Date: Oct 14, 2018
+ */
+
 public class Fork {
     private boolean pickedUp;
 

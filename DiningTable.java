@@ -1,5 +1,10 @@
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ *  @author Joshua Chen
+ *  Date: Oct 14, 2018
+ */
+
 public class DiningTable {
     public static void main(String[] args) throws InterruptedException {
 
