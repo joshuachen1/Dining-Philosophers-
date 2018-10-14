@@ -30,37 +30,27 @@ public class DiningTableUnstructured {
                         System.out.println("Philosopher A: Thinking for " + thinkingTime + " seconds");
                         Thread.sleep(thinkingTime * 1000);
 
-                        // Keep checking to see if either fork is available until both are obtained
-                        boolean haveLeftFork = false;
-                        boolean haveRightFork = false;
+                        System.out.println("Philosopher A: attempt to acquire fork to left");
+                        leftFork.lock();
+                        try {
+                            System.out.println("Philosopher A: acquired left fork");
+                            System.out.println("Philosopher A: attempt to acquire fork to right");
+                            rightFork.lock();
+                            try {
+                                System.out.println("Philosopher A: acquired right fork");
 
-                        while (!haveLeftFork || !haveRightFork) {
-                            if (!haveLeftFork) {
-                                System.out.println("Philosopher A: attempt to acquire fork to left");
-                                // Check if left fork is free at this time of invocation
-                                haveLeftFork = leftFork.tryLock(3, TimeUnit.SECONDS);
-                                if (haveLeftFork) {
-                                    System.out.println("Philosopher A: acquired left fork");
-                                }
+                                // EAT from 1 to 10 seconds
+                                int eatingTime = ThreadLocalRandom.current().nextInt(0, 10) + 1;
+                                System.out.println("Philosopher A: Eating for " + eatingTime + " seconds");
+                                Thread.sleep(eatingTime * 1000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            } finally {
+                                rightFork.unlock();
                             }
-                            if (!haveRightFork) {
-                                System.out.println("Philosopher A: attempt to acquire fork to right");
-                                // Check if right fork is free at this time of invocation
-                                haveRightFork = rightFork.tryLock(3, TimeUnit.SECONDS);
-                                if (haveRightFork) {
-                                    System.out.println("Philosopher A: acquired right fork");
-                                }
-                            }
+                        } finally {
+                            leftFork.unlock();
                         }
-                        // EAT from 1 to 10 seconds
-                        int eatingTime = ThreadLocalRandom.current().nextInt(0, 10) + 1;
-                        System.out.println("Philosopher A: Eating for " + eatingTime + " seconds");
-                        Thread.sleep(eatingTime * 1000);
-
-                        // Put down forks
-                        leftFork.unlock();
-                        rightFork.unlock();
-
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -81,37 +71,27 @@ public class DiningTableUnstructured {
                         System.out.println("Philosopher B: Thinking for " + thinkingTime + " seconds");
                         Thread.sleep(thinkingTime * 1000);
 
-                        // Keep checking to see if either fork is available until both are obtained
-                        boolean haveLeftFork = false;
-                        boolean haveRightFork = false;
+                        System.out.println("Philosopher B: attempt to acquire fork to left");
+                        leftFork.lock();
+                        try {
+                            System.out.println("Philosopher B: acquired left fork");
+                            System.out.println("Philosopher B: attempt to acquire fork to right");
+                            rightFork.lock();
+                            try {
+                                System.out.println("Philosopher B: acquired right fork");
 
-                        while (!haveLeftFork || !haveRightFork) {
-                            if (!haveLeftFork) {
-                                System.out.println("Philosopher B: attempt to acquire fork to left");
-                                // Check if left fork is free at this time of invocation
-                                haveLeftFork = leftFork.tryLock(3, TimeUnit.SECONDS);
-                                if (haveLeftFork) {
-                                    System.out.println("Philosopher B: acquired left fork");
-                                }
+                                // EAT from 1 to 10 seconds
+                                int eatingTime = ThreadLocalRandom.current().nextInt(0, 10) + 1;
+                                System.out.println("Philosopher B: Eating for " + eatingTime + " seconds");
+                                Thread.sleep(eatingTime * 1000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            } finally {
+                                rightFork.unlock();
                             }
-                            if (!haveRightFork) {
-                                System.out.println("Philosopher B: attempt to acquire fork to right");
-                                // Check if right fork is free at this time of invocation
-                                haveRightFork = rightFork.tryLock(3, TimeUnit.SECONDS);
-                                if (haveRightFork) {
-                                    System.out.println("Philosopher B: acquired right fork");
-                                }
-                            }
+                        } finally {
+                            leftFork.unlock();
                         }
-                        // EAT from 1 to 10 seconds
-                        int eatingTime = ThreadLocalRandom.current().nextInt(0, 10) + 1;
-                        System.out.println("Philosopher B: Eating for " + eatingTime + " seconds");
-                        Thread.sleep(eatingTime * 1000);
-
-                        // Put down forks
-                        leftFork.unlock();
-                        rightFork.unlock();
-
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -132,37 +112,27 @@ public class DiningTableUnstructured {
                         System.out.println("Philosopher C: Thinking for " + thinkingTime + " seconds");
                         Thread.sleep(thinkingTime * 1000);
 
-                        // Keep checking to see if either fork is available until both are obtained
-                        boolean haveLeftFork = false;
-                        boolean haveRightFork = false;
+                        System.out.println("Philosopher C: attempt to acquire fork to left");
+                        leftFork.lock();
+                        try {
+                            System.out.println("Philosopher C: acquired left fork");
+                            System.out.println("Philosopher C: attempt to acquire fork to right");
+                            rightFork.lock();
+                            try {
+                                System.out.println("Philosopher C: acquired right fork");
 
-                        while (!haveLeftFork || !haveRightFork) {
-                            if (!haveLeftFork) {
-                                System.out.println("Philosopher C: attempt to acquire fork to left");
-                                // Check if left fork is free at this time of invocation
-                                haveLeftFork = leftFork.tryLock(3, TimeUnit.SECONDS);
-                                if (haveLeftFork) {
-                                    System.out.println("Philosopher C: acquired left fork");
-                                }
+                                // EAT from 1 to 10 seconds
+                                int eatingTime = ThreadLocalRandom.current().nextInt(0, 10) + 1;
+                                System.out.println("Philosopher C: Eating for " + eatingTime + " seconds");
+                                Thread.sleep(eatingTime * 1000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            } finally {
+                                rightFork.unlock();
                             }
-                            if (!haveRightFork) {
-                                System.out.println("Philosopher C: attempt to acquire fork to right");
-                                // Check if right fork is free at this time of invocation
-                                haveRightFork = rightFork.tryLock(3, TimeUnit.SECONDS);
-                                if (haveRightFork) {
-                                    System.out.println("Philosopher C: acquired right fork");
-                                }
-                            }
+                        } finally {
+                            leftFork.unlock();
                         }
-                        // EAT from 1 to 10 seconds
-                        int eatingTime = ThreadLocalRandom.current().nextInt(0, 10) + 1;
-                        System.out.println("Philosopher C: Eating for " + eatingTime + " seconds");
-                        Thread.sleep(eatingTime * 1000);
-
-                        // Put down forks
-                        leftFork.unlock();
-                        rightFork.unlock();
-
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -183,37 +153,27 @@ public class DiningTableUnstructured {
                         System.out.println("Philosopher D: Thinking for " + thinkingTime + " seconds");
                         Thread.sleep(thinkingTime * 1000);
 
-                        // Keep checking to see if either fork is available until both are obtained
-                        boolean haveLeftFork = false;
-                        boolean haveRightFork = false;
+                        System.out.println("Philosopher D: attempt to acquire fork to left");
+                        leftFork.lock();
+                        try {
+                            System.out.println("Philosopher D: acquired left fork");
+                            System.out.println("Philosopher D: attempt to acquire fork to right");
+                            rightFork.lock();
+                            try {
+                                System.out.println("Philosopher D: acquired right fork");
 
-                        while (!haveLeftFork || !haveRightFork) {
-                            if (!haveLeftFork) {
-                                System.out.println("Philosopher D: attempt to acquire fork to left");
-                                // Check if left fork is free at this time of invocation
-                                haveLeftFork = leftFork.tryLock(3, TimeUnit.SECONDS);
-                                if (haveLeftFork) {
-                                    System.out.println("Philosopher D: acquired left fork");
-                                }
+                                // EAT from 1 to 10 seconds
+                                int eatingTime = ThreadLocalRandom.current().nextInt(0, 10) + 1;
+                                System.out.println("Philosopher D: Eating for " + eatingTime + " seconds");
+                                Thread.sleep(eatingTime * 1000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            } finally {
+                                rightFork.unlock();
                             }
-                            if (!haveRightFork) {
-                                System.out.println("Philosopher D: attempt to acquire fork to right");
-                                // Check if right fork is free at this time of invocation
-                                haveRightFork = rightFork.tryLock(3, TimeUnit.SECONDS);
-                                if (haveRightFork) {
-                                    System.out.println("Philosopher D: acquired right fork");
-                                }
-                            }
+                        } finally {
+                            leftFork.unlock();
                         }
-                        // EAT from 1 to 10 seconds
-                        int eatingTime = ThreadLocalRandom.current().nextInt(0, 10) + 1;
-                        System.out.println("Philosopher D: Eating for " + eatingTime + " seconds");
-                        Thread.sleep(eatingTime * 1000);
-
-                        // Put down forks
-                        leftFork.unlock();
-                        rightFork.unlock();
-
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -234,37 +194,27 @@ public class DiningTableUnstructured {
                         System.out.println("Philosopher E: Thinking for " + thinkingTime + " seconds");
                         Thread.sleep(thinkingTime * 1000);
 
-                        // Keep checking to see if either fork is available until both are obtained
-                        boolean haveLeftFork = false;
-                        boolean haveRightFork = false;
+                        System.out.println("Philosopher E: attempt to acquire fork to left");
+                        leftFork.lock();
+                        try {
+                            System.out.println("Philosopher E: acquired left fork");
+                            System.out.println("Philosopher E: attempt to acquire fork to right");
+                            rightFork.lock();
+                            try {
+                                System.out.println("Philosopher E: acquired right fork");
 
-                        while (!haveLeftFork || !haveRightFork) {
-                            if (!haveRightFork) {
-                                System.out.println("Philosopher E: attempt to acquire fork to right");
-                                // Check if right fork is free at this time of invocation
-                                haveRightFork = rightFork.tryLock(3, TimeUnit.SECONDS);
-                                if (haveRightFork) {
-                                    System.out.println("Philosopher E: acquired right fork");
-                                }
+                                // EAT from 1 to 10 seconds
+                                int eatingTime = ThreadLocalRandom.current().nextInt(0, 10) + 1;
+                                System.out.println("Philosopher E: Eating for " + eatingTime + " seconds");
+                                Thread.sleep(eatingTime * 1000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            } finally {
+                                rightFork.unlock();
                             }
-                            if (!haveLeftFork) {
-                                System.out.println("Philosopher E: attempt to acquire fork to left");
-                                // Check if left fork is free at this time of invocation
-                                haveLeftFork = leftFork.tryLock(3, TimeUnit.SECONDS);
-                                if (haveLeftFork) {
-                                    System.out.println("Philosopher E: acquired left fork");
-                                }
-                            }
+                        } finally {
+                            leftFork.unlock();
                         }
-                        // EAT from 1 to 10 seconds
-                        int eatingTime = ThreadLocalRandom.current().nextInt(0, 10) + 1;
-                        System.out.println("Philosopher E: Eating for " + eatingTime + " seconds");
-                        Thread.sleep(eatingTime * 1000);
-
-                        // Put down forks
-                        leftFork.unlock();
-                        rightFork.unlock();
-
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
