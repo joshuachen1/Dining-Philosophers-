@@ -194,14 +194,14 @@ public class DiningTableUnstructured {
                         System.out.println("Philosopher E: Thinking for " + thinkingTime + " seconds");
                         Thread.sleep(thinkingTime * 1000);
 
-                        System.out.println("Philosopher E: attempt to acquire fork to left");
-                        leftFork.lock();
+                        System.out.println("Philosopher E: attempt to acquire fork to right");
+                        rightFork.lock();
                         try {
                             System.out.println("Philosopher E: acquired left fork");
-                            System.out.println("Philosopher E: attempt to acquire fork to right");
-                            rightFork.lock();
+                            System.out.println("Philosopher E: attempt to acquire fork to left");
+                            leftFork.lock();
                             try {
-                                System.out.println("Philosopher E: acquired right fork");
+                                System.out.println("Philosopher E: acquired left fork");
 
                                 // EAT from 1 to 10 seconds
                                 int eatingTime = ThreadLocalRandom.current().nextInt(0, 10) + 1;
@@ -210,10 +210,10 @@ public class DiningTableUnstructured {
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             } finally {
-                                rightFork.unlock();
+                                leftFork.unlock();
                             }
                         } finally {
-                            leftFork.unlock();
+                            rightFork.unlock();
                         }
                     } catch (InterruptedException e) {
                         e.printStackTrace();
